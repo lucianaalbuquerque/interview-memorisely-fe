@@ -1,25 +1,26 @@
-'use client'
-import { getData } from '@/services/axiosClient';
-import React, {useEffect, useState} from 'react'
+'use client';
+import { getData } from '@/app/services/axiosClient';
+import React, { useEffect, useState } from 'react';
 import Lessons from '../components/Lessons';
 
 const Lectures = () => {
-  const [lectures, setLectures] = useState([])
-  
-  const fetchLectures = async () => {
-    const results = await getData()
-    setLectures(results);
-  }
+	const [lectures, setLectures] = useState([]);
 
-  useEffect(() => { fetchLectures(); }, [])
+	const fetchLectures = async () => {
+		const results = await getData();
+		setLectures(results);
+	};
 
-  console.log('onclient', lectures[0])
-  
-  return (
-    <div>Lectures
-      <Lessons data={lectures} />
-    </div>
-  )
-}
+	useEffect(() => {
+		fetchLectures();
+	}, []);
 
-export default Lectures
+	return (
+		<div>
+			Lectures
+			<Lessons data={lectures} />
+		</div>
+	);
+};
+
+export default Lectures;
