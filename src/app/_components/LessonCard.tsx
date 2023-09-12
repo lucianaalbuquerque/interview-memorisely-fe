@@ -2,12 +2,9 @@ import React from 'react';
 import { LessonProps } from '../_types/commonTypes';
 import Image from 'next/image';
 import Link from 'next/link';
+import { capitalize } from '../_helpers/commons';
 
 const LessonCard = ({ data }: { data: LessonProps }) => {
-	function cn(...classes: string[]) {
-		return classes.filter(Boolean).join(' ');
-	}
-
 	return (
 		<Link href={data.introVideo} className='flex flex-col h-80 min-w-min w-[18.5rem]'>
 			<div className='h-[12rem] w-full relative'>
@@ -26,13 +23,13 @@ const LessonCard = ({ data }: { data: LessonProps }) => {
 					objectFit='cover'
 					src={data.thumbnail}
 					alt={data.title}
-					className={cn('blur-[2px] rounded-md')}
+					className={'blur-[2px] rounded-md'}
 				/>
 			</div>
 
-			<div className='flex flex-col justify-between h-[6rem] mt-2'>
+			<div className='flex flex-col place-content-evenly h-[6rem] mt-2'>
 				<p className='text-xs bold text-gray-500'>
-					{data.language} - {data.difficulty} - {data.length}
+					{capitalize(data.language)} - {capitalize(data.difficulty)} - {Math.round(data.length/60)}m
 				</p>
 				<p className='text-sm text-gray-700 font-bold'>{data.title}</p>
 				<p className='text-xs text-gray-500'>{data.tutor.name}</p>
